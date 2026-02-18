@@ -1,0 +1,68 @@
+[
+  {
+    "id": "1",
+    "title": "Notebook Lenovo IdeaPad 3",
+    "description": "Notebook Lenovo IdeaPad 3 con procesador Intel i5, 8GB RAM y 512GB SSD. Ideal para trabajo y estudio.",
+    "code": "LENO-IP3-001",
+    "price": 750000,
+    "status": true,
+    "stock": 10,
+    "category": "laptops",
+    "thumbnails": []
+  },
+  {
+    "id": "2",
+    "title": "Notebook HP Pavilion 15",
+    "description": "HP Pavilion 15 con procesador Ryzen 5, 16GB RAM y 1TB SSD. Excelente rendimiento multitarea.",
+    "code": "HP-PAV15-002",
+    "price": 920000,
+    "status": true,
+    "stock": 7,
+    "category": "laptops",
+    "thumbnails": []
+  },
+  {
+    "id": "3",
+    "title": "Mouse Logitech G203",
+    "description": "Mouse gamer Logitech G203 con sensor de alta precisión y retroiluminación RGB.",
+    "code": "LOG-G203-003",
+    "price": 25000,
+    "status": true,
+    "stock": 25,
+    "category": "perifericos",
+    "thumbnails": []
+  },
+  {
+    "id": "4",
+    "title": "Teclado Redragon Kumara K552",
+    "description": "Teclado mecánico Redragon Kumara K552 con switches red y retroiluminación LED.",
+    "code": "RED-K552-004",
+    "price": 48000,
+    "status": true,
+    "stock": 15,
+    "category": "perifericos",
+    "thumbnails": []
+  },
+  {
+    "id": "5",
+    "title": "Monitor Samsung 24\" FHD",
+    "description": "Monitor Samsung 24 pulgadas Full HD con panel LED y conexión HDMI.",
+    "code": "SAM-24FHD-005",
+    "price": 180000,
+    "status": true,
+    "stock": 8,
+    "category": "monitores",
+    "thumbnails": []
+  },
+  {
+    "id": "6",
+    "title": "Monitor LG 27\" IPS",
+    "description": "Monitor LG 27 pulgadas con panel IPS, resolución Full HD y colores vibrantes.",
+    "code": "LG-27IPS-006",
+    "price": 265000,
+    "status": true,
+    "stock": 5,
+    "category": "monitores",
+    "thumbnails": []
+  }
+]
