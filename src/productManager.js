@@ -15,7 +15,9 @@ class ProductManager {
       const products = await this.getProducts();
       //antes que nada verificamos que el codigo no este repetido en ningun producto
       const codeUsed = this.verifyCode(product.code, products);
-      if (codeUsed) return "Error, el code ya esta en uso"
+      if (codeUsed){
+           return "Error, el código ya esta en uso"
+      }
 
       const id = newId();
       
@@ -41,7 +43,7 @@ class ProductManager {
       
       const productJson = await fs.readFile(this.path, "utf-8");
       const products = JSON.parse(productJson);
-
+      
       return products;
     } catch (error) {
       throw new Error("No se pudo leer el archivo", error.message);

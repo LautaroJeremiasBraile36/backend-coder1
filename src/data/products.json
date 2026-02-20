@@ -4,7 +4,7 @@
     "title": "Notebook Lenovo IdeaPad 3",
     "description": "Notebook Lenovo IdeaPad 3 con procesador Intel i5, 8GB RAM y 512GB SSD. Ideal para trabajo y estudio.",
     "code": "LENO-IP3-001",
-    "price": 750000,
+    "price": 1500000,
     "status": true,
     "stock": 10,
     "category": "laptops",
@@ -63,6 +63,17 @@
     "status": true,
     "stock": 5,
     "category": "monitores",
+    "thumbnails": []
+  },
+  {
+    "id": "441857df-7120-4c2f-9f57-66d3f98dfc9c",
+    "title": "Notebook Mac 3",
+    "description": "Notebook Mac 3 con procesador Intel i7, 8GB RAM y 512GB SSD. Ideal para trabajo y estudio.",
+    "code": "LENO-IP3-001",
+    "price": 1000000,
+    "status": true,
+    "stock": 5,
+    "category": "laptops",
     "thumbnails": []
   }
 ]

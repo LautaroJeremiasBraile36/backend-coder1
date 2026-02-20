@@ -3,17 +3,28 @@ import ProductManager from "./productManager.js";
 import CartManager from "./cartManager.js";
 
 const app = express();
-//middleware para recibir data json en mis endpoints
+
+//
+//////// middleware para recibir data json en mis endpoints
+//
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+//
+//////// PUERTO
+//
+const PORT = 8080;
+
+//
+//////// MANAGERS
+//
 const productManager = new ProductManager("./src/data/products.json");
 const cartManager = new CartManager("./src/data/carts.json");
 
-//Endpoints === Rutas
-//Obtengo info
-
-app.get("/products", async (req, res) => {
+//
+//////// PRODUCTOS
+//
+app.get("/api/products", async (req, res) => {
   try {
     const products = await productManager.getProducts();
 
@@ -25,21 +36,17 @@ app.get("/products", async (req, res) => {
     res.status(500).json({ status: "error", message: error.message });
   }
 });
-
-app.get("/products/:pId", async (req, res) => {
+app.get("/api/products/:pId", async (req, res) => {
   try {
-    const productId = req.params.productId;
+    const productId = req.params.pId;
 
-    const product = await productManager.getProductById(productId);
+    const product = await productManager.getProductById(pId);
     res.status(200).json({ status: "success", product });
   } catch (error) {
     res.status(500).json({ status: "error", message: error.message });
   }
 });
-
-// AGREGAR PRODUCTO - POST
-
-app.post("/products", async (req, res) => {
+app.post("/api/products", async (req, res) => {
   try {
     const newProduct = req.body;
 
@@ -49,10 +56,7 @@ app.post("/products", async (req, res) => {
     res.status(500).json({ status: "error", message: error.message });
   }
 });
-
-// ELIMINAR PRODUCT - DELETE
-
-app.delete("/products/:productId", async (req, res) => {
+app.delete("/api/products/:productId", async (req, res) => {
   try {
     const productId = req.params.productId;
     await productManager.deleteProductById(productId);
@@ -64,10 +68,7 @@ app.delete("/products/:productId", async (req, res) => {
     });
   }
 });
-
-// MODIFICAR UN PRODUCTO - PUT
-
-app.put("/products/:productId", async (req, res) => {
+app.put("/api/products/:productId", async (req, res) => {
   try {
     const productId = req.params.productId;
     const updates = req.body;
@@ -89,9 +90,8 @@ app.put("/products/:productId", async (req, res) => {
 });
 
 //
-
 //////// CART
-/// Get Carts = Obtener carritos
+//
 app.get("/api/carts", async (req, res) => {
   try {
     const carts = await cartManager.getCarts();
@@ -103,26 +103,64 @@ app.get("/api/carts", async (req, res) => {
     res.status(500).json({ status: "error", message: error.message });
   }
 });
-
-/// Get Carts By Id = Obtener carts por ID
 app.get("/api/carts/:cId", async (req, res) => {
   try {
-    const cartId = req.params.cartId;
+    const cartId = req.params.cId;
     const cart = await cartManager.getCartById(cartId);
     res.status(200).json({ status: "success", cart });
   } catch (error) {
     res.status(500).json({ status: "error", message: error.message });
   }
 });
-
-/// Post Cart = Creamos carrito
 app.post("/api/carts", async (req, res) => {
   try {
     const newCart = req.body;
     const cart = await cartManager.addCart(newCart);
-    res.status(201).json({ status: "success", newCart });
+    res.status(201).json({ status: "success", cart });
   } catch (error) {
     res.status(500).json({ status: "error", message: error.message });
+  }
+});
+app.post("/api/carts/:cId/products/:pId", async (req, res) => {
+  try {
+    const cart = await cartManager.addProductToCart(
+      req.params.cId,
+      req.params.pId,
+    );
+    res.status(201).json({ status: "succes", cart });
+  } catch (error) {
+    res.status(500).json({ status: "error", message: error.message });
+  }
+});
+app.put("/api/carts/:cId", async (req, res) => {
+  try {
+    const cartId = req.params.cId;
+    const updates = req.body;
+
+    const cart = await cartManager.updateCarritoById(cartId, updates);
+
+    res.status(200).json({
+      status: "success",
+      cart,
+    });
+    return cart;
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
+  }
+});
+app.delete("/api/carts/:cId", async (req, res) => {
+  try {
+    const cartId = req.params.cId;
+    await cartManager.deleteCartById(cartId);
+    res.status(204).send();
+  } catch (error) {
+    res.status(500).json({
+      status: "error",
+      message: error.message,
+    });
   }
 });
 
@@ -134,8 +172,8 @@ app.use((req, res) => {
 });
 
 //PUERTO
-app.listen(8080, () => {
+app.listen(PORT, () => {
   console.log(
-    "🚀 Servidor corriendo en el servidor en http://localhost:8080",
+    `🚀 Servidor corriendo en el servidor en http://localhost:${PORT}`,
   );
 });
